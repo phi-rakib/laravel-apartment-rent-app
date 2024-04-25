@@ -1,66 +1,86 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Apartment Rental Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+The apartment rental application is a web-based platform built using the Laravel framework. It facilitates the process of renting apartments to users and managing rental agreements, payments, and utility bills.
 
-## About Laravel
+## Features
+#### 1. User Management:
+- Users can register, log in, and manage their accounts.
+- User authentication ensures secure access to the application.
+#### 2. Apartment Listings:
+- Users can browse through available apartments listed on the platform.
+- Each apartment listing includes details such as title, description, number of bedrooms, bathrooms, amenities, and price.
+#### 3. Rental Agreements:
+- Users can create rental agreements to rent apartments.
+- Rental agreements specify the start date, end date (if applicable), rent amount, and whether the apartment has a gas connection.
+#### 4. Payments:
+- Users can make payments for rental fees and utility bills.
+- Payments are recorded and associated with specific rental agreements.
+#### 5. Utility Bill Management:
+- Gas and electricity bills are managed separately.
+- Gas bill records include the amount and type of gas usage (e.g., double stove).
+- Electricity bill records include the per-unit cost of electricity.
+#### 6. Admin Panel:
+- Administrators have access to an admin panel to manage apartments, users, rental agreements, payments, and utility bills.
+- Admins can view, create, update, and delete records as needed.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## How to Use:
+#### 1. Installation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Clone the repository
+```bash
+git clone https://github.com/phi-rakib/laravel-apartment-rent-app.git
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Change directory to laravel-apartment-rent-app
+```bash
+cd laravel-apartment-rent-app
+```
 
-## Learning Laravel
+- Install the dependencies
+```bash
+composer install
+```
+- Create database
+- Copy the environment file
+```bash
+cp .env.example .env
+```
+- Change database configuration values in the environment file
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your-database-name
+DB_USERNAME=your-db-user-name
+DB_PASSWORD=your-db-password
+```
+- Run migration
+```bash
+php artisan migrate
+```
+- Seed database
+```bash
+php artisan db:seed
+```
+- Start local development server
+```bash
+php artisan serve
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### 2. Usage:
+- Register as a user or log in if you already have an account.
+- Browse available apartments and select one to rent.
+- Create a rental agreement specifying the start date, rent amount, and other details.
+- Make payments for rental fees and utility bills.
+- View your rental agreements and payment history in your user dashboard.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+#### 3. Admin Panel:
+- Access the admin panel by logging in as an administrator.
+- Manage apartments, users, rental agreements, payments, and utility bills from the admin dashboard.
+- Perform CRUD operations on records as needed.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Technologies Used:
+- Laravel Framework: Backend development
+- PHP: Server-side scripting language
+- MySQL: Relational database management system
+- HTML, CSS, JavaScript: Frontend development
