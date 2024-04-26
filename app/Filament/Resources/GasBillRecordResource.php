@@ -22,8 +22,7 @@ class GasBillRecordResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-            ->latest()
-            ->take(2);
+            ->latest();
     }
 
     public static function form(Form $form): Form
