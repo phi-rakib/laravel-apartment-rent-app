@@ -30,6 +30,8 @@ class UserResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Hidden::make('password')
+                    ->default('123456'),
             ]);
     }
 
