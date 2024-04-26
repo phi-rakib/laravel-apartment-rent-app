@@ -17,7 +17,7 @@ class GasBillRecordResource extends Resource
 {
     protected static ?string $model = GasBillRecord::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-fire';
 
     public static function getEloquentQuery(): Builder
     {
