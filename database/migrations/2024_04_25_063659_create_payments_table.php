@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('rental_agreement_id')->constrained()->onDelete('cascade');
-            $table->foreignId('gas_bill_record_id')->constrained()->onDelete('cascade');
-            $table->foreignId('electricity_bill_record_id')->constrained()->onDelete('cascade');
-            $table->decimal('amount', 10, 2);
+            $table->year('billing_year');
+            $table->string('billing_month');
+            $table->decimal('gas_bill', 10, 2);
+            $table->integer('total_unit');
+            $table->decimal('electricity_bill', 10, 2);
+            $table->decimal('rent', 10, 2);
+            $table->decimal('total', 10, 2);
             $table->dateTime('paid_at');
             $table->timestamps();
         });

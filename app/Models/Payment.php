@@ -10,11 +10,14 @@ class Payment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'rental_agreement_id',
-        'gas_bill_record_id',
-        'electricity_bill_record_id',
-        'amount',
+        'billing_year',
+        'billing_month',
+        'gas_bill',
+        'total_unit',
+        'electricity_bill',
+        'rent',
+        'total',
         'paid_at',
     ];
 
@@ -36,5 +39,10 @@ class Payment extends Model
     public function electricityBillRecord()
     {
         return $this->belongsTo(ElectricityBillRecord::class);
+    }
+
+    public function apartment()
+    {
+        return $this->belongsTo(Apartment::class);
     }
 }
