@@ -17,6 +17,7 @@ use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -62,14 +63,14 @@ class PaymentResource extends Resource
                     ->searchable()
                     ->live()
                     ->afterStateUpdated(
-                        function(Set $set, ?string $state, Get $get) {
+                        function (Set $set, ?string $state, Get $get) {
                             $rentalAgreement = RentalAgreement::latest()->where('apartment_id', $state)->whereNull('end_date')->first();
-                            
-                            if($rentalAgreement){
-                                if($rentalAgreement->has_gas_connection){
+
+                            if ($rentalAgreement) {
+                                if ($rentalAgreement->has_gas_connection) {
                                     $set('gas_bill', GasBillRecord::latest()->where('type', 'double_stove')->value('amount'));
                                 }
-    
+
                                 $set('rent', $rentalAgreement->rent);
                                 $set('user_id', $rentalAgreement->user_id);
                                 $set('total', $get('gas_bill') + $get('electricity_bill') + $get('rent'));
@@ -77,7 +78,7 @@ class PaymentResource extends Resource
                             }
                         }
                     ),
-                
+
                 Hidden::make('rental_agreement_id'),
 
                 Forms\Components\Select::make('user_id')
@@ -95,7 +96,7 @@ class PaymentResource extends Resource
                     ->required()
                     ->numeric()
                     ->live(debounce: 1000)
-                    ->afterStateUpdated(function(Set $set, ?string $state, Get $get) {      
+                    ->afterStateUpdated(function (Set $set, ?string $state, Get $get) {
                         $set('electricity_bill', ElectricityBillRecord::latest()->first()->value('per_unit_cost') * $state);
                         $set('total', $get('gas_bill') + $get('electricity_bill') + $get('rent'));
                     }),
@@ -108,7 +109,7 @@ class PaymentResource extends Resource
                 Forms\Components\TextInput::make('rent')
                     ->required()
                     ->numeric(),
-                
+
                 Forms\Components\TextInput::make('total')
                     ->required()
                     ->numeric()
@@ -125,6 +126,7 @@ class PaymentResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('rentalAgreement.user.name')
+                    ->label('Tenant')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('rentalAgreement.apartment.title')
@@ -155,7 +157,23 @@ class PaymentResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('billing_month')
+                    ->options([
+                        'January' => 'January',
+                        'February' => 'February',
+                        'March' => 'March',
+                        'April' => 'April',
+                        'May' => 'May',
+                        'June' => 'June',
+                        'July' => 'July',
+                        'August' => 'August',
+                        'September' => 'September',
+                        'October' => 'October',
+                        'November' => 'November',
+                        'December' => 'December',
+                    ]),
+                SelectFilter::make('billing_year')
+                    ->options(array_combine(range(2000, Carbon::now()->format('Y')), range(2000, Carbon::now()->format('Y'))))
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
