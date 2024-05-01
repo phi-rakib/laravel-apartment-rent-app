@@ -90,7 +90,8 @@ class PaymentResource extends Resource
                 Forms\Components\TextInput::make('gas_bill')
                     ->numeric()
                     ->required()
-                    ->readOnly(),
+                    ->readOnly()
+                    ->default(0),
 
                 Forms\Components\TextInput::make('total_unit')
                     ->required()
