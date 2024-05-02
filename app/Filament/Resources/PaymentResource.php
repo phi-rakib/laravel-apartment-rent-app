@@ -97,7 +97,7 @@ class PaymentResource extends Resource
                 Forms\Components\TextInput::make('total_unit')
                     ->required()
                     ->numeric()
-                    ->live(debounce: 2000)
+                    ->live(onBlur: true)
                     ->afterStateUpdated(function (Set $set, ?string $state, Get $get) {
                         $set('electricity_bill', ElectricityBillRecord::latest()->first()->value('per_unit_cost') * $state);
                         $set('total', $get('gas_bill') + $get('electricity_bill') + $get('rent'));
