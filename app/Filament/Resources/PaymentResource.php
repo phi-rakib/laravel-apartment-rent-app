@@ -138,6 +138,10 @@ class PaymentResource extends Resource
                     ->numeric()
                     ->sortable()
                     ->summarize(Sum::make()->label('Total')),
+                Tables\Columns\TextColumn::make('total_unit')
+                    ->numeric()
+                    ->sortable()
+                    ->summarize(Sum::make()->label('Unit')),
                 Tables\Columns\TextColumn::make('electricity_bill')
                     ->numeric()
                     ->sortable()
